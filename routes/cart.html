@@ -4,6 +4,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
@@ -16,6 +21,10 @@
       rel="stylesheet"
       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
       crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css"
     />
     <link rel="stylesheet" href="../styles/style.css" />
     <title>Read.io : Cart</title>
@@ -49,7 +58,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="./routes/cart.html">Cart</a>
               </li>
-              <p class="cart-counter">0</p>
+              <p class="cart-counter"></p>
               <i class="fas fa-shopping-cart"></i>
             </div>
           </ul>
@@ -68,26 +77,56 @@
         </div>
       </div>
     </nav>
-    <div id="shoppnig-items" class="container"></div>
+    <div>
+      <div id="main-container" class="container">
+        <div class="row">
+          
+            <div id="cart-content" class="col-sm-6">
+              <h2 class="d-none">Your cart</h2>
+            </div>
+            <div class="col-sm-6">
+              <h2 class="d-none">
+                Delete items
+                <i
+                  onclick="cleaner()"
+                  style="font-size: 30px; cursor: pointer"
+                  class="fas fa-trash"
+                ></i>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="center">
+          <div class="breeding-rhombus-spinner">
+            <div class="rhombus child-1"></div>
+            <div class="rhombus child-2"></div>
+            <div class="rhombus child-3"></div>
+            <div class="rhombus child-4"></div>
+            <div class="rhombus child-5"></div>
+            <div class="rhombus child-6"></div>
+            <div class="rhombus child-7"></div>
+            <div class="rhombus child-8"></div>
+            <div class="rhombus big"></div>
+          </div>
+        </div>
+
+        <div id="splide4" class="splide">
+          <div class="splide__track">
+            <ul id="splide-list-4" class="splide__list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <div class="breeding-rhombus-spinner">
-      <div class="rhombus child-1"></div>
-      <div class="rhombus child-2"></div>
-      <div class="rhombus child-3"></div>
-      <div class="rhombus child-4"></div>
-      <div class="rhombus child-5"></div>
-      <div class="rhombus child-6"></div>
-      <div class="rhombus child-7"></div>
-      <div class="rhombus child-8"></div>
-      <div class="rhombus big"></div>
-    </div>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
     <script src="../index.js"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

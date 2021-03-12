@@ -3,6 +3,7 @@ let cart = [];
 const startEngine = () => {
   getAlbums();
   hideSpinner();
+  counterUpdater();
 };
 async function getAlbums() {
   const response = await fetch("https://striveschool-api.herokuapp.com/books");
@@ -10,8 +11,8 @@ async function getAlbums() {
   console.log(data);
   BooksStorage.push(data);
   createCart(data);
-  displayResults(data.splice(0, 25));
-  displayResults2(data.splice(0, 25));
+  displayResults(data);
+  displayResults2(data);
 
   return data;
 }
@@ -22,7 +23,7 @@ const displayResults = async (data) => {
     mainContent.innerHTML += `<li class="splide__slide"><div class="container"><img
     class="carousel-img"
     src="${data.img}" height=250 width="145"
-    alt=""/><div class="book-btns"><p class="price">${data.price}$</p><i  onclick="addToCart(${data.asin})" class="fas fa-cart-arrow-down"></i><i onclick="openInfo()"class="fas fa-info-circle"></i></div></div></li>`;
+    alt=""/><div class="book-btns"><p class="price">${data.price}$</p><i data-attribute="${data.asin}" onclick="addToCart(event)" class="fas fa-cart-arrow-down"></i><i onclick="openInfo()"class="fas fa-info-circle"></i></div></div></li>`;
   });
   await new Splide("#splide", {
     perPage: 7,
@@ -47,7 +48,7 @@ const displayResults2 = async (data) => {
     mainContent.innerHTML += `<li class="splide__slide"><div class="container"><img
     class="carousel-img"
     src="${data.img}" height=250 width="145"
-    alt=""/><div class="book-btns"><p class="price">${data.price}$</p><img class="d-none" src="${data.img}"/><i  onclick="addToCart(${data.asin})" class="fas fa-cart-arrow-down"></i><i onclick="openInfo()"class="fas fa-info-circle"></i></div></div></li>`;
+    alt=""/><div class="book-btns"><p class="price">${data.price}$</p><i data-attribute="${data.asin}" onclick="addToCart(event)" class="fas fa-cart-arrow-down"></i><i onclick="openInfo()"class="fas fa-info-circle"></i></div></div></li>`;
   });
   await new Splide("#splide2", {
     perPage: 7,
@@ -90,10 +91,17 @@ const displayResults2 = async (data) => {
 //   }).mount();
 // };
 const hideSpinner = () => {
-  let spinner = document.querySelector(".center");
-  spinner.classList.toggle("d-none");
+  let spinner = document.querySelectorAll(".center");
+  let h2 = document.querySelectorAll("h2");
+  h2.forEach((element) => {
+    element.classList.toggle("d-none");
+  });
+  spinner.forEach((element) => {
+    element.classList.toggle("d-none");
+  });
 };
-const addToCart = (bookid) => {
+const addToCart = (event) => {
+  let bookid = event.target.getAttribute("data-attribute");
   const currentCart = localStorage.getItem("cart");
   if (currentCart === null) {
     localStorage.setItem("cart", bookid.toString() + ",");
@@ -107,8 +115,7 @@ const addToCart = (bookid) => {
     console.log(formatCart);
     localStorage.setItem("cart", formatCart);
   }
-
-  console.log(bookid);
+  counterUpdater();
 };
 const createCart = (data) => {
   const actualCart = localStorage.getItem("cart");
@@ -122,7 +129,33 @@ const createCart = (data) => {
         return data[indexOfBook];
       }
     });
+    const cartContent = document.querySelector("#cart-content");
     console.log(filter);
+    filter.forEach((data) => {
+      cartContent.innerHTML += `<img
+       
+        src="${data.img}" height=250 width="145"
+        alt=""/><div class="book-btns"><p class="price">${data.price}$</p><i onclick="openInfo()"class="fas fa-info-circle"></i></div></div></li>`;
+    });
   }
+};
+const counterUpdater = () => {
+  const actualCart = localStorage.getItem("cart");
+
+  const array = actualCart.split(",");
+  if (array.length === 2 && array[1] === "") array.pop();
+
+  let cartCounter = document.querySelector(".cart-counter");
+
+  console.log(array);
+  cartCounter.innerHTML = array.length;
+};
+
+const cleaner = async () => {
+  localStorage.clear();
+
+  let cartCounter = document.querySelector(".cart-counter");
+
+  cartCounter.innerHTML = "";
 };
 window.onload = setTimeout(startEngine, 1000);

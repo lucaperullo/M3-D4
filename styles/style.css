@@ -1,38 +1,49 @@
 body {
-  background-image: url("https://img5.goodfon.com/wallpaper/nbig/1/3c/ben-wilson-forest-ground-art-tekstura-trava.jpg");
+  background-attachment: fixed;
+  font-family: "Syncopate", sans-serif;
+  background-image: url("https://media.discordapp.net/attachments/816755257936969748/819629673038348288/congruent_outline.png");
 }
 .navbar {
+  z-index: 10;
   position: fixed;
   top: 0;
   width: 100%;
-  background-position: contain;
-  background-image: url("https://media.discordapp.net/attachments/815874328108204045/819575132334194698/double-bubble-outline.png");
+  box-shadow: 0px 1px 19px 14px;
+  background-image: url("https://media.discordapp.net/attachments/816755257936969748/819638710214852638/ignasi_pattern_s.png");
+}
+.carousel-img {
+  box-shadow: 2px 9px 12px 0px;
 }
 a {
+  font-weight: bold;
   color: rgb(8, 3, 3) !important;
 }
 .splide__pagination {
   display: none;
 }
 #main-container {
-  min-height: 90vh;
-  background-image: url("https://img.freepik.com/free-photo/wooden-background_24972-623.jpg?size=626&ext=jpg&ga=GA1.2.1416348057.1602979200");
+  background-attachment: fixed;
+  min-height: 80vh;
+  background-color: rgb(77, 47, 25);
+
+  background-image: url("https://media.discordapp.net/attachments/816755257936969748/819638710214852638/ignasi_pattern_s.png");
   padding: 69px;
   margin-top: 9rem;
   margin-bottom: 5rem;
-  box-shadow: inset 0px 0px 20px 10px rgb(53, 51, 49);
+  box-shadow: inset 0px 0px 20px 20px rgb(0, 0, 0);
   border-radius: 26px;
 }
 .price {
-  color: white;
+  color: rgb(0, 0, 0);
 }
 .center {
-  padding-top: 25%;
+  padding-top: 15%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .carousel-item:hover {
   transform: scale(1.1);
 }
@@ -43,7 +54,7 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: rgba(255, 255, 255, 0.459);
+  background-color: rgba(255, 255, 255, 0);
 }
 .book-btns > i {
   color: rgb(117, 23, 23);
@@ -52,8 +63,10 @@ a {
   color: rgb(46, 112, 51);
   cursor: pointer;
 }
+
 h2 {
-  color: white;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
   margin-bottom: 3rem;
   margin-top: 3rem;
 }
